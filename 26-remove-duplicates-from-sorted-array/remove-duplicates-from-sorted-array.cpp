@@ -3,7 +3,7 @@ public:
     int removeDuplicates(vector<int>& nums) 
     {
         int k = 0;
-        const int n = (int)nums.size();
+        const int n = static_cast<int>(nums.size());
         if(n == 0)return n;
         for(int i =0; i < n-1 ; i++)
         {
