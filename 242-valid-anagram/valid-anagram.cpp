@@ -1,17 +1,18 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        int ss = static_cast<int>(s.size());
-        int st = static_cast<int>(t.size());
-        sort(s.begin(), s.end());
-        sort(t.begin(), t.end());
-        bool check = true;
-        if(ss != st) return false;
+        if(s.size()!=t.size())return false;
 
-        for(int i =0; i < ss ;i++)
+        int appare[26]= {0};
+
+        for(char c: s)
         {
-            if(s[i]!=t[i])check = false;
+            appare[c - 'a']++;
         }
-        return check;
+        for(char c :t)
+        {
+            if(--appare[c - 'a']<0) return false;
+        }
+        return true;
     }
 };
