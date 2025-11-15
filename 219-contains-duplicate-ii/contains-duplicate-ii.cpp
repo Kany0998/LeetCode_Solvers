@@ -1,16 +1,17 @@
 class Solution {
 public:
-    bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        int s = static_cast<int>(nums.size());
-
-        for (int i = 0; i < s - 1; i++)
+    bool containsNearbyDuplicate(vector<int>& nums, int k) 
+    {
+        unordered_set<int> range;
+        const int s = static_cast<int>(nums.size());
+        for(int i =0; i < s; i++)
         {
-            for (int j = i + 1; j < s && j - i <= k; j++)
+            if(range.count(nums[i])) return true;
+
+            range.insert(nums[i]);
+            if(static_cast<int>(range.size()) > k)
             {
-                if (nums[i] == nums[j])
-                {
-                    return true;
-                }
+                range.erase(nums[i -k]);
             }
         }
         return false;
